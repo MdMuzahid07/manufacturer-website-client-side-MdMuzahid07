@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home/Home';
-import Navbar from './pages/Home/Navbar';
+import Navbar from './components/Header/Navbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Contact from './pages/Contact';
