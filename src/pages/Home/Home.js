@@ -5,6 +5,7 @@ import EliteSeriesBanner from './Banners/EliteSeriesBanner';
 import LandingBanner from './Banners/LandingBanner';
 import ToughSeriesBanner from './Banners/ToughSeriesBanner';
 import FollowUs from './FollowUs';
+import Reviews from '../Home/Reviews/Reviews'
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <ToughSeriesBanner />
             <LatestProducts />
             <BusinessSummary />
+            <Reviews/>
             <FollowUs />
         </div>
     );
