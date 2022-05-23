@@ -16,7 +16,7 @@ const Navbar = ({ children }) => {
                             <ul class="menu menu-horizontal">
                                 {/* <!-- Navbar menu content here --> */}
                                 <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
-                                <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
+                                <NavLink className="font-bold hover:text-black m-3" to='/contact'>Contact Us</NavLink>
                                 <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
                                 <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
                                 <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
