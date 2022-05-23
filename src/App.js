@@ -5,6 +5,8 @@ import Navbar from './components/Header/Navbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Contact from './pages/Contact';
+import Footer from './components/Footer/Footer';
+
 
 
 AOS.init();
@@ -18,6 +20,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Navbar>
+      <Footer />
     </div>
   );
 }

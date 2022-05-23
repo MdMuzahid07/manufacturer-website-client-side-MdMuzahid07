@@ -1,9 +1,10 @@
 import React from 'react';
-import BusinessSummary from '../BusinessSummary';
-import LatestProducts from '../LatestProducts';
+import BusinessSummary from './BusinessSummary';
+import LatestProducts from './LatestProducts';
 import EliteSeriesBanner from './Banners/EliteSeriesBanner';
 import LandingBanner from './Banners/LandingBanner';
 import ToughSeriesBanner from './Banners/ToughSeriesBanner';
+import FollowUs from './FollowUs';
 
 
 const Home = () => {
@@ -12,8 +13,9 @@ const Home = () => {
             <LandingBanner />
             <EliteSeriesBanner />
             <ToughSeriesBanner />
-            <BusinessSummary/>
-            <LatestProducts/>
+            <LatestProducts />
+            <BusinessSummary />
+            <FollowUs />
         </div>
     );
 };
