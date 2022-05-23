@@ -17,8 +17,8 @@ const Navbar = ({ children }) => {
                                 {/* <!-- Navbar menu content here --> */}
                                 <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
                                 <NavLink className="font-bold hover:text-black m-3" to='/contact'>Contact Us</NavLink>
-                                <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
-                                <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
+                                <NavLink className="font-bold hover:text-black m-3" to='/login'>Login/SingUp</NavLink>
+                                <NavLink className="font-bold hover:text-black m-3" to='/'>Dashboard</NavLink>
                                 <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
                             </ul>
                         </div>

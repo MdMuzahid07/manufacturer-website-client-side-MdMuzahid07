@@ -6,6 +6,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Contact from './pages/Contact';
 import Footer from './components/Footer/Footer';
+import SignUp from './pages/Authentication/SignIn/SingUp';
+import Login from './pages/Authentication/Login/Login';
 
 
 
@@ -18,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home></Home>} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/signup" element={<SignUp/>} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
       </Navbar>
       <Footer />
