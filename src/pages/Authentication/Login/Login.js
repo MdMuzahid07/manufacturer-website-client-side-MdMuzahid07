@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -11,7 +11,6 @@ const Login = () => {
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
     const location = useLocation();
-
 
     const [
         signInWithEmailAndPassword,
@@ -26,10 +25,11 @@ const Login = () => {
     }
 
     if (gerror || error) {
-        gerror ? toast.error(gerror) : toast.error(error);
+        toast.error(gerror || error)
     }
 
     if (guser || user) {
+        toast.success("Welcome to POWER TOOLS");
         return <Navigate to="/" state={{ from: location }} replace></Navigate>
     }
 

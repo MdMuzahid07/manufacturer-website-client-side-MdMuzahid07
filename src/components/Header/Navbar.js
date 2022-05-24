@@ -1,8 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import NavbarSearchBar from './NavbarSearchBar';
+import { signOut } from "firebase/auth";
+import auth from '../../firebse.init';
+import { toast } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+
 
 const Navbar = ({ children }) => {
+
+    const [user, lading, error] = useAuthState(auth);
+
+    console.log(user)
+
+
+
+
+    const handleSignOut = () => {
+        signOut(auth);
+        toast.success("Logout Successfully")
+    }
+
     return (
         <nav className='max-w-7xl mx-auto'>
             <NavbarSearchBar />
@@ -18,7 +37,6 @@ const Navbar = ({ children }) => {
                                 <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
                                 <NavLink className="font-bold hover:text-black m-3" to='/contact'>Contact Us</NavLink>
                                 <NavLink className="font-bold hover:text-black m-3" to='/login'>Login/SingUp</NavLink>
-                                <NavLink className="font-bold hover:text-black m-3" to='/'>Dashboard</NavLink>
                                 <NavLink className="font-bold hover:text-black m-3" to='/'>Home</NavLink>
                             </ul>
                         </div>
@@ -33,7 +51,9 @@ const Navbar = ({ children }) => {
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                                 <div class="w-10 rounded-full">
-                                    <img src="https://api.lorem.space/image/face?hash=33791" />
+                                    {
+                                        user ? <img src={user.photoURL} alt=""/> : <img src="https://i.ibb.co/8NYjKNh/user-Profile.png" alt="" />
+                                    }
                                 </div>
                             </label>
                             <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
@@ -43,8 +63,12 @@ const Navbar = ({ children }) => {
                                         <span class="badge">New</span>
                                     </a>
                                 </li>
-                                <li><a className='text-black'>Settings</a></li>
-                                <li><a className='text-black'>Logout</a></li>
+
+                                <li><button className=' text-black'>Settings</button></li>
+                                <li><button onClick={handleSignOut} className=' text-black'>Logout</button></li>
+                                <li>
+                                    <Link className="text-black  font-bold" to='/dashboard'>Dashboard</Link>
+                                </li>
                             </ul>
                         </div>
                     </div>

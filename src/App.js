@@ -11,6 +11,9 @@ import Login from './pages/Authentication/Login/Login';
 import ErrorPage from './pages/ErrorPage';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import RequireAuth from './pages/Authentication/RequireAuth/RequireAuth';
+import Purchase from './components/Purchase';
+import Dashboard from './components/Dashboard/Dashboard';
 
 
 
@@ -27,6 +30,12 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<ErrorPage />} />
+          <Route path="/purchase" element={
+            <RequireAuth>
+              <Purchase />
+            </RequireAuth>
+          } />
+          <Route path="/dashboard" element={<Dashboard/>}></Route>
         </Routes>
       </Navbar>
       <Footer />
