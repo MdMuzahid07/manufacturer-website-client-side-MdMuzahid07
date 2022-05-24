@@ -17,7 +17,7 @@ const Login = () => {
         user,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
+    ] = useSignInWithEmailAndPassword(auth);
 
 
     if (gloading || loading) {
@@ -45,7 +45,7 @@ const Login = () => {
     // console.log(watch("example"));
 
     return (
-        <div className='signup-form max-w-xs mx-auto my-20 p-5 rounded-xl'>
+        <div className='signup-form max-w-xs mx-auto my-20 p-5  rounded-xl'>
             <h1 className='text-xl font-bold text-warning mb-5'><span className='bg-black px-2'>Log</span> in</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("email")} type="email" placeholder='Email' className='input input-bordered input-warning w-full max-w-xs mb-2' />
