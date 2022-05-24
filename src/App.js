@@ -30,7 +30,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<ErrorPage />} />
-          <Route path="/purchase" element={
+          <Route path="/purchase/:id" element={
             <RequireAuth>
               <Purchase />
             </RequireAuth>
