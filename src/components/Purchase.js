@@ -45,7 +45,6 @@ const Purchase = () => {
             toast.success("Order Successful")
         })
 
-
     };
 
 

@@ -18,6 +18,9 @@ import MyProfile from './components/Dashboard/MyProfile';
 import MyOrders from './components/Dashboard/MyOrders';
 import AddReview from './components/Dashboard/AddReview';
 import Blogs from './pages/Blogs';
+import ManageOrders from './components/Dashboard/AdminRoutes/ManageOrders';
+import AddProduct from './components/Dashboard/AdminRoutes/AddProduct';
+import ManageUsers from './components/Dashboard/AdminRoutes/ManageUsers';
 
 
 
@@ -47,6 +50,9 @@ function App() {
             <Route path="myprofile" element={<MyProfile />} />
             <Route path="myorders" element={<MyOrders />} />
             <Route path="addreview" element={<AddReview />} />
+            <Route path="manageorders" element={<ManageOrders/>} />
+            <Route path="manageusers" element={<ManageUsers/>} />
+            <Route path="addproduct" element={<AddProduct/>} />
           </Route>
           <Route path='/blogs' element={<Blogs/>} />
         </Routes>
