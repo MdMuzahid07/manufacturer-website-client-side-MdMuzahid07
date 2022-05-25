@@ -7,7 +7,7 @@ const MyOrders = () => {
         fetch("http://localhost:5000/order")
             .then(response => response.json())
             .then(data => setOrders(data));
-    }, []);
+    }, [orders]);
 
     console.log(orders)
 
@@ -20,8 +20,8 @@ const MyOrders = () => {
                     <thead>
                         <tr>
                             <th>Image</th>
-                            <th>Quantity <br/> and <br/> Unit Price</th>
-                            <th>Product Status</th>
+                            <th>Quantity</th>
+                            <th>Product Id</th>
                             <th>Manage</th>
                         </tr>
                     </thead>
@@ -34,17 +34,18 @@ const MyOrders = () => {
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
                                                 <div class="mask mask-squircle w-12 h-12">
-                                                    <img src={order?.image} alt="Avatar Tailwind CSS Component" />
+                                                    <img src={order?.data.productImg} alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="font-bold">{order?.minimumOrder}</div>
-                                        <br />
-                                        <div class="text-sm opacity-50">${order?.unitPrice}</div>
+                                        <div class="font-bold">{order?.data.quantity}</div>
                                     </td>
-                                    <td>On Werehouse</td>
+                                    <td>
+                                    <div class="font-bold">{order?.data.productId}</div>
+                                        
+                                    </td>
                                     <th>
                                         <button class="btn btn-ghost bg-black text-warning btn-xs">Cancel</button>
                                         <br />
@@ -58,10 +59,10 @@ const MyOrders = () => {
                     {/* <!-- foot --> */}
                     <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
-                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tfoot>
 

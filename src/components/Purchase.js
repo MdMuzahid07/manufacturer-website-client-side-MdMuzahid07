@@ -64,8 +64,9 @@ const Purchase = () => {
                     </div>
                     <div>
                         <form className='bg-slate-100 p-5 rounded-xl' onSubmit={handleSubmit(onSubmit)}>
-                            <input {...register("productName", { required: true })} type="text" value={product?.name} placeholder='ProductName' className='input input-bordered input-warning w-full max-w-xl mb-2' />
-                            <input {...register("productId", { required: true })} type="text" value={product?._id} placeholder='ProductId' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productImg")} type="text" value={product?.image} placeholder='ProductName' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productName")} type="text" value={product?.name} placeholder='ProductName' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productId")} type="text" value={product?._id} placeholder='ProductId' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("name", { required: true })} type="text" value={user.displayName} placeholder='Name' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("email", { required: true })} type="email" value={user.email} placeholder='Email' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("phone", { required: true })} type="number" placeholder='Phone' className='input input-bordered input-warning w-full max-w-xl mb-2' />

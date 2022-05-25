@@ -17,6 +17,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import MyProfile from './components/Dashboard/MyProfile';
 import MyOrders from './components/Dashboard/MyOrders';
 import AddReview from './components/Dashboard/AddReview';
+import Blogs from './pages/Blogs';
 
 
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="myorders" element={<MyOrders />} />
             <Route path="addreview" element={<AddReview />} />
           </Route>
+          <Route path='/blogs' element={<Blogs/>} />
         </Routes>
       </Navbar>
       <Footer />
