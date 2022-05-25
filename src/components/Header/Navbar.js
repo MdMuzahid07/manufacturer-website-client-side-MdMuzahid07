@@ -10,7 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Navbar = ({ children }) => {
 
-    const [user, lading, error] = useAuthState(auth);
+    const [user, loadding, error] = useAuthState(auth);
 
 
     const handleSignOut = () => {
@@ -54,22 +54,32 @@ const Navbar = ({ children }) => {
                             </label>
                             <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                                 <li>
+                                    {
+                                        user ? <h1 className='text-black font-bold'>{user?.displayName}</h1> : <h2 className='text-black font-bold'>User Name</h2>
+                                    }
+                                </li>
+                                <li>
                                     <a class="justify-between text-black">
                                         Profile
                                         <span class="badge">New</span>
                                     </a>
                                 </li>
-
-                                <li><button className=' text-black'>Settings</button></li>
-                                <li><button onClick={handleSignOut} className=' text-black'>Logout</button></li>
                                 <li>
                                     <Link className="text-black  font-bold" to='/dashboard'>Dashboard</Link>
                                 </li>
+                                <li>
+                                    <button onClick={handleSignOut} className='text-black font-bold'><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                                    </svg>Logout</button>
+                                </li>
                             </ul>
                         </div>
+                        <label for="my-drawer-2" class="btn btn-square btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        </label>
                     </div>
+
                     {/* <!-- Page content here --> */}
-                    {/* Content */}
                     {children}
                 </div>
                 <div class="drawer-side">
