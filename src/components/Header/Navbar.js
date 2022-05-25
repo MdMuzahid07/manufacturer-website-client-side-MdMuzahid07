@@ -12,10 +12,6 @@ const Navbar = ({ children }) => {
 
     const [user, lading, error] = useAuthState(auth);
 
-    console.log(user)
-
-
-
 
     const handleSignOut = () => {
         signOut(auth);
@@ -52,7 +48,7 @@ const Navbar = ({ children }) => {
                             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                                 <div class="w-10 rounded-full">
                                     {
-                                        user ? <img src={user.photoURL} alt=""/> : <img src="https://i.ibb.co/8NYjKNh/user-Profile.png" alt="" />
+                                        user ? <img src={user.photoURL} alt="" /> : <img src="https://i.ibb.co/8NYjKNh/user-Profile.png" alt="" />
                                     }
                                 </div>
                             </label>
@@ -80,8 +76,10 @@ const Navbar = ({ children }) => {
                     <label for="my-drawer-3" class="drawer-overlay"></label>
                     <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
                         {/* <!-- Sidebar content here --> */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <NavLink className="font-bold hover:text-warning m-3" to='/'>Home</NavLink>
+                        <NavLink className="font-bold hover:text-warning m-3" to='/contact'>Contact Us</NavLink>
+                        <NavLink className="font-bold hover:text-warning m-3" to='/login'>Login/SingUp</NavLink>
+                        <NavLink className="font-bold hover:text-warning m-3" to='/'>Home</NavLink>
                     </ul>
 
                 </div>

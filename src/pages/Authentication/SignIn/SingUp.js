@@ -58,9 +58,9 @@ const SingUp = () => {
         <div className='signup-form max-w-xs mx-auto mt-20 p-5 rounded-xl'>
             <h1 className='text-xl font-bold text-warning mb-5'><span className='bg-black px-2'>Sign</span> Up</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("name")}  type="text"  placeholder='Name' className='input input-bordered input-warning w-full max-w-xs mb-2'/>
-            <input {...register("email")}  type="email"  placeholder='Email' className='input input-bordered input-warning w-full max-w-xs mb-2'/>
-            <input {...register("password")} type="password"  placeholder='Password'  className='input input-bordered input-warning w-full max-w-xs mb-3'/>
+                <input {...register("name")} type="text" placeholder='Name' className='input input-bordered input-warning w-full max-w-xs mb-2' />
+                <input {...register("email")} type="email" placeholder='Email' className='input input-bordered input-warning w-full max-w-xs mb-2' />
+                <input {...register("password")} type="password" placeholder='Password' className='input input-bordered input-warning w-full max-w-xs mb-3' />
                 <input className='btn btn-xs btn-warning rounded-none text-white font-bold mb-2' type="submit" value="Sign Up" />
             </form>
             <p><small>Already have an account?</small> <Link to="/login"><small className='text-primary'>Please Login</small></Link> </p>
