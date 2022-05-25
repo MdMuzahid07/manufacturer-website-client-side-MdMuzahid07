@@ -38,10 +38,14 @@ function App() {
               <Purchase />
             </RequireAuth>
           } />
-          <Route path="/dashboard" element={<Dashboard/>}>
-            <Route path="myprofile" element={<MyProfile/>} />
-            <Route path="myorders" element={<MyOrders/>} />
-            <Route path="addreview" element={<AddReview/>} />
+          <Route path="/dashboard" element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }>
+            <Route path="myprofile" element={<MyProfile />} />
+            <Route path="myorders" element={<MyOrders />} />
+            <Route path="addreview" element={<AddReview />} />
           </Route>
         </Routes>
       </Navbar>
