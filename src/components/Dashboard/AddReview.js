@@ -25,7 +25,7 @@ const AddReview = () => {
     return (
         <div className='lg:max-w-4xl mx-auto'>
             <h1 className='text-5xl text-purple-500 font-bold mb-5'>Give a Review</h1>
-            <div class="hero min-h-screen bg-base-200  rounded-xl">
+            <div class="hero py-20 bg-base-200  rounded-xl">
                 <div class="hero-content flex-col lg:flex-row-reverse">
                     <div class="text-center lg:text-left">
                         <img src="https://img.freepik.com/free-vector/reviews-concept-landing-page_23-2148211322.jpg" class="max-w-sm rounded-lg shadow-2xl" />

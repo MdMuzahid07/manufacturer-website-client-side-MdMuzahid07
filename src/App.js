@@ -21,6 +21,7 @@ import Blogs from './pages/Blogs';
 import ManageOrders from './components/Dashboard/AdminRoutes/ManageOrders';
 import AddProduct from './components/Dashboard/AdminRoutes/AddProduct';
 import ManageUsers from './components/Dashboard/AdminRoutes/ManageUsers';
+import Payment from './components/Dashboard/Payment';
 
 
 
@@ -49,12 +50,13 @@ function App() {
           }>
             <Route path="myprofile" element={<MyProfile />} />
             <Route path="myorders" element={<MyOrders />} />
+            <Route path="manageorders" element={<ManageOrders />} />
             <Route path="addreview" element={<AddReview />} />
-            <Route path="manageorders" element={<ManageOrders/>} />
-            <Route path="manageusers" element={<ManageUsers/>} />
-            <Route path="addproduct" element={<AddProduct/>} />
+            <Route path="manageusers" element={<ManageUsers />} />
+            <Route path="addproduct" element={<AddProduct />} />
+            <Route path='payment/:Id' element={<Payment />} />
           </Route>
-          <Route path='/blogs' element={<Blogs/>} />
+          <Route path='/blogs' element={<Blogs />} />
         </Routes>
       </Navbar>
       <Footer />

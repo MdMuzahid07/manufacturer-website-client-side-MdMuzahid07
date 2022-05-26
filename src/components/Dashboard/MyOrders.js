@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
 
@@ -43,15 +44,25 @@ const MyOrders = () => {
                                         <div class="font-bold">{order?.data.quantity}</div>
                                     </td>
                                     <td>
-                                    <div class="font-bold">{order?.data.productId}</div>
-                                        
+                                        <div class="font-bold">{order?.data.productId}</div>
+
                                     </td>
                                     <th>
-                                        <button class="btn btn-ghost bg-black text-warning btn-xs">Cancel</button>
+                                        {
+                                            (!order?.data.paid) &&
+                                            <button class="btn btn-ghost bg-black text-warning btn-xs">Cancel</button>
+                                        }
                                         <br />
-                                        <button class="btn btn-ghost bg-black text-warning btn-xs">Payment</button>
+                                        {
+                                            (!order?.data.paid) &&
+                                            <Link to={`/dashboard/payment/${order._id}`} class="btn btn-ghost bg-black text-warning btn-xs">Pay Now</Link>
+                                        }
+                                        {
+                                            (order?.data.paid) &&
+                                            <p className='btn btn-xs btn-success text-white'>Paid</p>
+                                        }
                                     </th>
-                           
+
                                 </tr>
                             )
                         }

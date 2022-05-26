@@ -45,6 +45,7 @@ const Purchase = () => {
             toast.success("Order Successful")
         })
 
+
     };
 
 
@@ -63,13 +64,14 @@ const Purchase = () => {
                     </div>
                     <div>
                         <form className='bg-slate-100 p-5 rounded-xl' onSubmit={handleSubmit(onSubmit)}>
-                            <input {...register("productImg")} type="text" value={product?.image} placeholder='ProductName' className='input input-bordered input-warning w-full max-w-xl mb-2' />
-                            <input {...register("productName")} type="text" value={product?.name} placeholder='ProductName' className='input input-bordered input-warning w-full max-w-xl mb-2' />
-                            <input {...register("productId")} type="text" value={product?._id} placeholder='ProductId' className='input input-bordered input-warning w-full max-w-xl mb-2' />
-                            <input {...register("name", { required: true })} type="text" value={user.displayName} placeholder='Name' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productImg", { required: true })} value={product?.image} placeholder='ProductImage' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productName", { required: true })} value={product?.name} placeholder='ProductName' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productId", { required: true })} value={product?._id} placeholder='ProductId' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("name", { required: true })} value={user.displayName} placeholder='Name' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("email", { required: true })} type="email" value={user.email} placeholder='Email' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("phone", { required: true })} type="number" placeholder='Phone' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("quantity", { required: true })} type="number" placeholder={minimumOrder} className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("unitPrice", { required: true })} type="number" value={product?.unitPrice} className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("address", { required: true })} type="text" placeholder='Address' className='input input-bordered input-warning w-full max-w-xl mb-3' />
                             <br />
                             <input className='btn btn-warning text-white font-bold mb-2' type="submit" value="Place Order" />
@@ -82,3 +84,9 @@ const Purchase = () => {
 };
 
 export default Purchase;
+
+
+
+
+
+

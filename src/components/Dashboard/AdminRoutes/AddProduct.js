@@ -37,6 +37,9 @@ console.log(productImage)
         formData.set("image", img);
 
         axios.post("https://api.imgbb.com/1/upload?key=5c8d53f37578d93d74d44676d4d69f1a", formData).then(res => {
+            if(!res.data.data.display_url) {
+                return toast.error("Image upload error")
+            }
             setProductImg(res.data.data.display_url)
         })
     }
