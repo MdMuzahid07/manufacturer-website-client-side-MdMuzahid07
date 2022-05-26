@@ -10,8 +10,6 @@ const MyOrders = () => {
             .then(data => setOrders(data));
     }, [orders]);
 
-    console.log(orders)
-
     return (
         <div className='lg:px-10 mb-10'>
             <h1 className='text-5xl text-purple-500 font-bold mb-2'>My Orders</h1>
