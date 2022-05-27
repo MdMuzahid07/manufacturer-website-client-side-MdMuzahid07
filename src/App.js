@@ -22,6 +22,7 @@ import ManageOrders from './components/Dashboard/AdminRoutes/ManageOrders';
 import AddProduct from './components/Dashboard/AdminRoutes/AddProduct';
 import ManageUsers from './components/Dashboard/AdminRoutes/ManageUsers';
 import Payment from './components/Dashboard/Payment';
+import ManageProducts from './components/Dashboard/ManageProducts';
 
 
 
@@ -54,6 +55,7 @@ function App() {
             <Route path="addreview" element={<AddReview />} />
             <Route path="manageusers" element={<ManageUsers />} />
             <Route path="addproduct" element={<AddProduct />} />
+            <Route path="manageproducts" element={<ManageProducts />} />
             <Route path='payment/:Id' element={<Payment />} />
           </Route>
           <Route path='/blogs' element={<Blogs />} />

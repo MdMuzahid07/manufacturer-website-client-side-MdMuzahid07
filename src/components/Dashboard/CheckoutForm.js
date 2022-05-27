@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-const CheckoutForm = ({ totalPrice, order }) => {
+const CheckoutForm = ({ order }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
@@ -11,8 +11,15 @@ const CheckoutForm = ({ totalPrice, order }) => {
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const price = totalPrice;
-    const {_id ,name, address, email, phone, productId, quantity, productName, unitPrice } = order?.data;
+    const orderInfo =order?.data
+    const _id = order;
+    // const {name, address, email, phone, productId, quantity, productName, unitPrice } = orderInfo;
+
+    const price = parseInt(orderInfo?.quantity) * parseInt(orderInfo?.unitPrice);
+
+
+    // console.log({price})
+
 
     useEffect(() => {
         fetch('http://localhost:5000/create-payment-intent', {
@@ -20,15 +27,15 @@ const CheckoutForm = ({ totalPrice, order }) => {
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify({ price })
+            body: JSON.stringify()
         })
-            .then(response => response.json())
+            .then(response => response.json({price}))
             .then(data => {
                 if (data?.clientSecret) {
                     setClientSecret(data?.clientSecret);
                 }
             })
-    }, [price, order])
+    }, [ order])
 
 
     const handleSubmit = async (event) => {
@@ -61,14 +68,14 @@ const CheckoutForm = ({ totalPrice, order }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: 'john'
-                        // email: email,
-                        // address: address,
-                        // phone: phone,
-                        // productId: productId,
-                        // quantity: quantity,
-                        // productName: productName,
-                        // unitPrice: unitPrice
+                        Name: 'john',
+                        // Email: email,
+                        // Address: address,
+                        // Phone: phone,
+                        // ProductId: productId,
+                        // Quantity: quantity,
+                        // ProductName: productName,
+                        // UnitPrice: unitPrice
                     },
                 },
             },

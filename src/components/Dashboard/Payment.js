@@ -2,7 +2,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CheckoutForm from '../CheckoutForm';
+import CheckoutForm from './CheckoutForm';
 
 
 const stripePromise = loadStripe('pk_test_51L0o8fEyiRobmIfUp7b7wXoZxyHDSl8m2BGzmMqnEtpwFOWNRNK6c2t4Z2CyJbKaf8P3Qj9D2aYfmA7Repd8HUdY00pgoVL8DW');
@@ -16,7 +16,7 @@ const Payment = () => {
         fetch(url)
             .then(response => response.json())
             .then(data => setOrder(data))
-    }, [])
+    }, [order])
 
     const price = order?.data.unitPrice;
     const quantity = order?.data.quantity;
@@ -41,7 +41,7 @@ const Payment = () => {
             <div class="card  w-50 max-w-md  bg-warning text-white">
                 <div class="card-body">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm totalPrice={totalPrice} order={order} />
+                        <CheckoutForm order={order} />
                     </Elements>
 
                 </div>
