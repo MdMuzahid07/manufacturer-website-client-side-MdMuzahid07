@@ -21,7 +21,6 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-
     if (gloading || loading) {
         return <Loading />
     }

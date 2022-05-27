@@ -1,3 +1,4 @@
+import { CropLandscapeOutlined } from '@mui/icons-material';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -11,38 +12,38 @@ const CheckoutForm = ({ order }) => {
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const orderInfo =order?.data
-    const _id = order;
-    // const {name, address, email, phone, productId, quantity, productName, unitPrice } = orderInfo;
+    const _id = order?._id;
+    const orderInfo = order?.data
 
-    const price = parseInt(orderInfo?.quantity) * parseInt(orderInfo?.unitPrice);
+    const {name, address, email, phone, quantity, unitPrice } = orderInfo;
 
-
-    // console.log({price})
-
+    const price = parseInt(quantity) * parseInt(unitPrice);
+    
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify()
-        })
-            .then(response => response.json({price}))
-            .then(data => {
-                if (data?.clientSecret) {
-                    setClientSecret(data?.clientSecret);
-                }
+        if (price) {
+            fetch('http://localhost:5000/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({price})
             })
-    }, [ order])
+                .then(response => response.json())
+                .then(data => {
+                    if (data?.clientSecret) {
+                        setClientSecret(data.clientSecret);
+                    }
+                })
+        }
+    }, [price])
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!stripe || !elements) {
-            return toast.error("Card info error!")
+            return;
         }
 
         const card = elements.getElement(CardElement);
@@ -62,20 +63,16 @@ const CheckoutForm = ({ order }) => {
         setProcession(true)
         // confirm card payment
 
-        const { paymentIntent, intentError } = await stripe.confirmCardPayment(
+        const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
             clientSecret,
             {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        Name: 'john',
-                        // Email: email,
-                        // Address: address,
-                        // Phone: phone,
-                        // ProductId: productId,
-                        // Quantity: quantity,
-                        // ProductName: productName,
-                        // UnitPrice: unitPrice
+                        name: name,
+                        email: email,
+                        address: address,
+                        phone: phone,
                     },
                 },
             },
@@ -89,7 +86,7 @@ const CheckoutForm = ({ order }) => {
         else {
             setCardError('');
             setTransactionId(paymentIntent.id)
-            console.log(paymentIntent)
+            console.log("payment intent", paymentIntent)
             setSuccess("Thanks for payment")
 
 
@@ -109,8 +106,8 @@ const CheckoutForm = ({ order }) => {
             })
                 .then(response => response.json())
                 .then(data => {
-                    setProcession(false);
                     console.log(data)
+                    setProcession(false);
                 })
         }
 
@@ -143,7 +140,7 @@ const CheckoutForm = ({ order }) => {
                 cardError && <p className='text-black font-bold'>{cardError}</p>
             }
             {
-                success && <div className='text-green-500 font-bold'>
+                success && <div className='text-white font-bold'>
                     <p>{success}</p>
                     <p>Transaction Id: <span className='text-white font-bold'>{transactionId}</span></p>
                 </div>

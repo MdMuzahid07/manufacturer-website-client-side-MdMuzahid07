@@ -11,6 +11,8 @@ const ManageProducts = () => {
             .then(data => setProducts(data));
     }, [products]);
 
+    console.log(products)
+
 
 
     // to delete a order from database
@@ -58,10 +60,10 @@ const ManageProducts = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="font-bold">{product?.quantity}</div>
+                                    <div class="font-bold">{product?.availableQuantity}</div>
                                 </td>
                                 <td>
-                                    <div class="font-bold">{product?.productId}</div>
+                                    <div class="font-bold">{product?._id}</div>
 
                                 </td>
                                 <th>

@@ -54,7 +54,7 @@ const Navbar = ({ children }) => {
                             <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                                 <li>
                                     {
-                                        user ? <h1 className='text-black font-bold'>{user?.displayName}</h1> : <h2 className='text-black font-bold'>User Name</h2>
+                                        user ? <h1 className='text-black font-bold'>{(user?.displayName) || (user?.user?.displayName)}</h1> : <h2 className='text-black font-bold'>User Name</h2>
                                     }
                                 </li>
                                 <li>

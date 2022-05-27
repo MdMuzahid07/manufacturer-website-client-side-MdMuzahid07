@@ -47,16 +47,16 @@ const MyOrders = () => {
                                     </td>
                                     <th>
                                         {
-                                            (!order?.data.paid) &&
+                                            (!order?.paid) &&
                                             <button class="btn btn-ghost bg-black text-warning btn-xs">Cancel</button>
                                         }
                                         <br />
                                         {
-                                            (!order?.data.paid) &&
+                                            (!order?.paid) &&
                                             <Link to={`/dashboard/payment/${order._id}`} class="btn btn-ghost bg-black text-warning btn-xs">Pay Now</Link>
                                         }
                                         {
-                                            (order?.data.paid) &&
+                                            (order?.paid) &&
                                             <p className='btn btn-xs btn-success text-white'>Paid</p>
                                         }
                                     </th>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, Navigate, useLocation } from 'react-router-dom';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import './SignUp.css';
 import auth from '../../../firebse.init';
@@ -14,6 +14,10 @@ const SingUp = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
+    // to update profile
+    const [displayName, setDisplayName] = useState('');
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
     const location = useLocation();
 
     const [
@@ -23,13 +27,11 @@ const SingUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-
-
-    if (gloading || loading) {
+    if (gloading || loading || updating) {
         return <Loading />
     }
-    if (gerror || error) {
-        gerror ? toast.error(gerror) : toast.error(error);
+    if (gerror || error || updateError) {
+        toast.error(gerror?.message || error?.message || updateError?.message)
 
     }
 
@@ -39,16 +41,10 @@ const SingUp = () => {
 
 
 
-    const onSubmit = data => {
-
-        const name = data.name;
-        const email = data.email;
-        const password = data.password;
-
-        console.log(name, email, password)
-
-
-        createUserWithEmailAndPassword(email, password)
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password)
+        await updateProfile({ displayName: data.name });
+        toast.success('Profile Updated')
     };
 
 

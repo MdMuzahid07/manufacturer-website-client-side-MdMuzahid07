@@ -16,7 +16,7 @@ const Payment = () => {
         fetch(url)
             .then(response => response.json())
             .then(data => setOrder(data))
-    }, [order])
+    }, [Id])
 
     const price = order?.data.unitPrice;
     const quantity = order?.data.quantity;
@@ -41,7 +41,9 @@ const Payment = () => {
             <div class="card  w-50 max-w-md  bg-warning text-white">
                 <div class="card-body">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm order={order} />
+                        {
+                            order && <CheckoutForm order={order} />
+                        }
                     </Elements>
 
                 </div>
