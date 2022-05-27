@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const MyOrders = () => {
 
@@ -9,6 +10,28 @@ const MyOrders = () => {
             .then(response => response.json())
             .then(data => setOrders(data));
     }, [orders]);
+
+
+
+    // to cancel order
+    const handleDelete = (id) => {
+        const proceed = window.confirm("Delete Order?")
+        if (proceed) {
+            fetch(`http://localhost:5000/order/${id}`, {
+                method: 'DELETE',
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result) {
+                        const newRemaining = orders.filter(order => order._id !== id);
+                        setOrders(newRemaining);
+                        toast.success('Order Cancelled')
+                    }
+                })
+                .catch(error => console.log(error))
+        }
+    }
+
 
     return (
         <div className='lg:px-10 mb-10'>
@@ -48,16 +71,20 @@ const MyOrders = () => {
                                     <th>
                                         {
                                             (!order?.paid) &&
-                                            <button class="btn btn-ghost bg-black text-warning btn-xs">Cancel</button>
+                                            <button onClick={() => handleDelete(order?._id)} class="btn btn-ghost bg-black text-warning btn-xs">Cancel</button>
                                         }
                                         <br />
                                         {
                                             (!order?.paid) &&
                                             <Link to={`/dashboard/payment/${order._id}`} class="btn btn-ghost bg-black text-warning btn-xs">Pay Now</Link>
                                         }
+
                                         {
-                                            (order?.paid) &&
-                                            <p className='btn btn-xs btn-success text-white'>Paid</p>
+                                            (order?.paid) && <div>
+                                                <p className='btn btn-xs btn-success text-white'>Paid</p>
+                                                <br />
+                                                <p className='text-green-500'><span className='text-black'>Payment transaction id  :</span><br />{order?.transactionId}</p>
+                                            </div>
                                         }
                                     </th>
 

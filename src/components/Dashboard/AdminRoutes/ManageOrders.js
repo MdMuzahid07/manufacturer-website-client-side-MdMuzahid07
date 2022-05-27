@@ -67,7 +67,16 @@ const ManageOrders = () => {
 
                                     </td>
                                     <th>
-                                        <button onClick={() => handleDelete(order?._id)} class="btn btn-ghost bg-black text-warning btn-xs">Delete Order</button>
+                                        {
+                                            !order?.paid && <button onClick={() => handleDelete(order?._id)} class="btn btn-ghost bg-black text-warning btn-xs">Delete Order</button>
+                                        }
+                                        {
+                                            order?.paid && <div>
+                                                <p className='btn btn-xs btn-success text-white'>Paid</p>
+                                                <p>Transaction id: <br /> <span className='text-green-500'>{order?.transactionId}</span></p>
+                                            </div>
+
+                                        }
 
                                     </th>
 
