@@ -11,10 +11,6 @@ const ManageProducts = () => {
             .then(data => setProducts(data));
     }, [products]);
 
-    console.log(products)
-
-
-
     // to delete a order from database
     const handleDelete = (id) => {
         const proceed = window.confirm("Delete Product?");

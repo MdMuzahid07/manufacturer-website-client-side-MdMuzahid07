@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
-import auth from '../../../firebse.init';
 import Loading from '../../Loading';
 
 const ManageUsers = () => {

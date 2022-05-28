@@ -23,6 +23,7 @@ import AddProduct from './components/Dashboard/AdminRoutes/AddProduct';
 import ManageUsers from './components/Dashboard/AdminRoutes/ManageUsers';
 import Payment from './components/Dashboard/Payment';
 import ManageProducts from './components/Dashboard/ManageProducts';
+import RequireAdmin from './pages/Authentication/RequireAdmin/RequireAdmin';
 
 
 
@@ -53,7 +54,9 @@ function App() {
             <Route path="myorders" element={<MyOrders />} />
             <Route path="manageorders" element={<ManageOrders />} />
             <Route path="addreview" element={<AddReview />} />
-            <Route path="manageusers" element={<ManageUsers />} />
+            <Route path="manageusers" element={<RequireAdmin>
+              <ManageUsers />
+            </RequireAdmin>} />
             <Route path="addproduct" element={<AddProduct />} />
             <Route path="manageproducts" element={<ManageProducts />} />
             <Route path='payment/:Id' element={<Payment />} />

@@ -7,7 +7,6 @@ const AddProduct = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [productImage, setProductImg] = useState();
 
-console.log(productImage)
     const onSubmit = (data) => {
 
         const productData = {
