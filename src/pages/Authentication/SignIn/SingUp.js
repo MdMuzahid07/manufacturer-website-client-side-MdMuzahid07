@@ -7,13 +7,13 @@ import './SignUp.css';
 import auth from '../../../firebse.init';
 import Loading from '../../../components/Loading';
 import { toast } from 'react-toastify';
+import useToken from '../../../hooks/useToken';
 
 
 
 const SingUp = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
-
     // to update profile
     const [displayName, setDisplayName] = useState('');
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
@@ -27,6 +27,14 @@ const SingUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
+
+    const [token] = useToken(user || guser);
+
+    console.log(token)
+
+
+
+
     if (gloading || loading || updating) {
         return <Loading />
     }
@@ -35,8 +43,8 @@ const SingUp = () => {
 
     }
 
-    if (guser || user) {
-        return <Navigate to="/" state={{ from: location }} replace />
+    if (token) {
+        return <Navigate to="/dashboard" state={{ from: location }} replace />
     }
 
 

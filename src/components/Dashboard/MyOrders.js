@@ -1,15 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { signOut } from "firebase/auth";
 import { toast } from 'react-toastify';
+import auth from '../../firebse.init';
 
 const MyOrders = () => {
 
     const [orders, setOrders] = useState();
+    const navigate = useNavigate();
+    const [user] = useAuthState(auth);
+
     useEffect(() => {
-        fetch("http://localhost:5000/order")
-            .then(response => response.json())
-            .then(data => setOrders(data));
-    }, [orders]);
+        if (user) {
+            fetch(`https://fast-reef-28359.herokuapp.com/order?email=${user.email}`, {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(response => {
+                    if (response.status === 401 || response.status === 403) {
+                        signOut(auth);
+                        localStorage.removeItem("accessToken");
+                        navigate('/')
+                        toast.error("Unauthorized access blocked!");
+                    }
+
+                    return response.json()
+                })
+                .then(data => setOrders(data));
+        }
+    }, [orders, user]);
 
 
 
@@ -17,7 +40,7 @@ const MyOrders = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("Delete Order?")
         if (proceed) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`https://fast-reef-28359.herokuapp.com/order/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => response.json())
@@ -34,8 +57,9 @@ const MyOrders = () => {
 
 
     return (
-        <div className='lg:px-10 mb-10'>
-            <h1 className='text-5xl text-purple-500 font-bold mb-2'>My Orders</h1>
+        <div className='lg:px-10 my-10'>
+            <h1 className='text-2xl font-bold  my-5'><span className='text-3xl text-warning bg-black px-2'>My</span> Orders</h1>
+
             <div class="overflow-x-auto w-full">
                 <table class="table w-full">
                     {/* <!-- head --> */}
@@ -48,7 +72,6 @@ const MyOrders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* <!-- row 1 --> */}
                         {
                             orders?.map((order) =>
                                 <tr>
@@ -56,16 +79,16 @@ const MyOrders = () => {
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
                                                 <div class="mask mask-squircle w-12 h-12">
-                                                    <img src={order?.data.productImg} alt="Avatar Tailwind CSS Component" />
+                                                    <img src={order?.productImg} alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="font-bold">{order?.data.quantity}</div>
+                                        <div class="font-bold">{order?.quantity}</div>
                                     </td>
                                     <td>
-                                        <div class="font-bold">{order?.data.productId}</div>
+                                        <div class="font-bold">{order?.productId}</div>
 
                                     </td>
                                     <th>

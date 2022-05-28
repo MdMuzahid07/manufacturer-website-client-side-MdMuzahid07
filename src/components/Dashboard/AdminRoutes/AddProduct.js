@@ -15,7 +15,7 @@ console.log(productImage)
             image: productImage
         }
 
-        fetch("http://localhost:5000/product", {
+        fetch("https://fast-reef-28359.herokuapp.com/product", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -12,14 +12,14 @@ const Payment = () => {
 
     const [order, setOrder] = useState();
     useEffect(() => {
-        const url = `http://localhost:5000/order/${Id}`;
+        const url = `https://fast-reef-28359.herokuapp.com/order/${Id}`;
         fetch(url)
             .then(response => response.json())
             .then(data => setOrder(data))
     }, [Id])
 
-    const price = order?.data.unitPrice;
-    const quantity = order?.data.quantity;
+    const price = order?.unitPrice;
+    const quantity = order?.quantity;
 
     const totalPrice = parseInt(price) * parseInt(quantity);
 
@@ -30,11 +30,11 @@ const Payment = () => {
             <h1 className='text-2xl font-bold my-4'><span className='bg-black text-warning text-3xl px-2'>Pay</span> Now</h1>
             <div class="card w-50 max-w-md bg-black mb-2">
                 <div class="card-body">
-                    <h2 class="card-title text-white">Hello, {order?.data.name}</h2>
-                    <h2 class="card-title text-warning">Please Pay<div class="divider divider-horizontal">For</div> <span className='text-white'>{order?.data.productName}</span></h2>
+                    <h2 class="card-title text-white">Hello, {order?.name}</h2>
+                    <h2 class="card-title text-warning">Please Pay<div class="divider divider-horizontal">For</div> <span className='text-white'>{order?.productName}</span></h2>
                     <hr />
-                    <p className='text-warning font-bold'>Price Per Unit <span className='text-white text-xl'>${order?.data.unitPrice}</span></p>
-                    <p className='text-warning font-bold'>Product Quantity <span className='text-white text-xl'>{order?.data.quantity}</span></p>
+                    <p className='text-warning font-bold'>Price Per Unit <span className='text-white text-xl'>${order?.unitPrice}</span></p>
+                    <p className='text-warning font-bold'>Product Quantity <span className='text-white text-xl'>{order?.quantity}</span></p>
                     <p className='text-warning font-bold'>Total Price<span className='text-white text-xl'> ${totalPrice}</span> USD</p>
                 </div>
             </div>

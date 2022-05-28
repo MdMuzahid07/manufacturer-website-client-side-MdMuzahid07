@@ -6,7 +6,7 @@ const ManageProducts = () => {
     const [products, setProducts] = useState();
 
     useEffect(() => {
-        fetch("http://localhost:5000/product")
+        fetch("https://fast-reef-28359.herokuapp.com/product")
             .then(response => response.json())
             .then(data => setProducts(data));
     }, [products]);
@@ -19,7 +19,7 @@ const ManageProducts = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("Delete Product?");
         if (proceed) {
-            fetch(`http://localhost:5000/product/${id}`, {
+            fetch(`https://fast-reef-28359.herokuapp.com/product/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => response.json())

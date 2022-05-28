@@ -13,7 +13,7 @@ const Purchase = () => {
 
     const [product, setProduct] = useState();
     useEffect(() => {
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://fast-reef-28359.herokuapp.com/product/${id}`;
         fetch(url)
             .then(response => response.json())
             .then(data => setProduct(data))
@@ -31,19 +31,31 @@ const Purchase = () => {
             return toast.warning("Please Add under Available quantity")
         }
 
-        const sendOrder = {data}
+        const orderData = {
+            productImg: data.productImg,
+            productName: data.productName,
+            productId: data.productId,
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            quantity: data.quantity,
+            unitPrice: data.unitPrice,
+            address: data.address
+        };
 
-        fetch("http://localhost:5000/order", {
+        fetch("https://fast-reef-28359.herokuapp.com/order", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(sendOrder)
+            body: JSON.stringify(orderData)
         })
-        .then(response => response.json())
-        .then(result => {
-            toast.success("Order Successful")
-        })
+            .then(response => response.json())
+            .then(result => {
+                if (result) {
+                    toast.success("Order Successful")
+                }
+            })
 
 
     };

@@ -6,7 +6,7 @@ const AddReview = () => {
     const onSubmit = data => {
 
 
-        fetch("http://localhost:5000/review", {
+        fetch("https://fast-reef-28359.herokuapp.com/review", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -23,8 +23,8 @@ const AddReview = () => {
 
 
     return (
-        <div className='lg:max-w-4xl mx-auto'>
-            <h1 className='text-5xl text-purple-500 font-bold mb-5'>Give a Review</h1>
+        <div className='lg:max-w-4xl mx-auto my-10'>
+            <h1 className='text-2xl font-bold  my-5'><span className='text-3xl text-warning bg-black px-2'>Give</span> a Review</h1>
             <div class="hero py-20 bg-base-200  rounded-xl">
                 <div class="hero-content flex-col lg:flex-row-reverse">
                     <div class="text-center lg:text-left">

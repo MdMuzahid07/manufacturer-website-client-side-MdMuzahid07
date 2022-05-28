@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     const _id = order?._id;
-    const orderInfo = order?.data
+    const orderInfo = order
 
     const {name, address, email, phone, quantity, unitPrice } = orderInfo;
 
@@ -22,7 +22,7 @@ const CheckoutForm = ({ order }) => {
 
     useEffect(() => {
         if (price) {
-            fetch('http://localhost:5000/create-payment-intent', {
+            fetch('https://fast-reef-28359.herokuapp.com/create-payment-intent', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -97,7 +97,7 @@ const CheckoutForm = ({ order }) => {
                 transactionId: paymentIntent.id
             }
 
-            fetch(`http://localhost:5000/order/${_id}`, {
+            fetch(`https://fast-reef-28359.herokuapp.com/order/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json'

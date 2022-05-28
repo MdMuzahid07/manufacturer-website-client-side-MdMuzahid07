@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../../components/Loading';
 import auth from '../../../firebse.init';
+import useToken from '../../../hooks/useToken';
 
 const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -21,6 +22,9 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [token] = useToken(user || guser)
+
+
     if (gloading || loading) {
         return <Loading />
     }
@@ -29,9 +33,9 @@ const Login = () => {
         toast.error(gerror || error)
     }
 
-    if (guser || user) {
+    if (token) {
         toast.success("Welcome to POWER TOOLS");
-        return <Navigate to="/" state={{ from: location }} replace></Navigate>
+        return <Navigate to="/" state={{ from: location }} replace />
     }
 
     const onSubmit = data => {

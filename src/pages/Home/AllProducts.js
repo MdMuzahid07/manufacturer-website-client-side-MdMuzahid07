@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const AllProducts = () => {
     const [products, setProducts] = useState();
     useEffect(() => {
-        fetch("http://localhost:5000/product")
+        fetch("https://fast-reef-28359.herokuapp.com/product")
             .then(response => response.json())
             .then(data => setProducts(data));
     }, [products]);

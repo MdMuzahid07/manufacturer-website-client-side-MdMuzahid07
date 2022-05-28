@@ -5,7 +5,7 @@ const ManageOrders = () => {
     const [orders, setOrders] = useState();
 
     useEffect(() => {
-        fetch("http://localhost:5000/order")
+        fetch("https://fast-reef-28359.herokuapp.com/adminOrderManage")
             .then(response => response.json())
             .then(data => setOrders(data));
     }, [orders]);
@@ -16,7 +16,7 @@ const ManageOrders = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("Delete Order?")
         if (proceed) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`https://fast-reef-28359.herokuapp.com/order/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => response.json())
@@ -33,7 +33,7 @@ const ManageOrders = () => {
 
 
     return (
-        <div className='lg:max-w-4xl mx-auto px-2 my-20'>
+        <div className='lg:max-w-4xl mx-auto px-2 my-10'>
             <h2 className='text-2xl font-bold text-warning my-7'><span className='text-3xl bg-black px-2'>Manage</span> Orders</h2>
             <div class="overflow-x-auto w-full">
                 <table class="table w-full">
@@ -54,16 +54,16 @@ const ManageOrders = () => {
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
                                                 <div class="mask mask-squircle w-12 h-12">
-                                                    <img src={order?.data.productImg} alt="Avatar Tailwind CSS Component" />
+                                                    <img src={order?.productImg} alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="font-bold">{order?.data.quantity}</div>
+                                        <div class="font-bold">{order?.quantity}</div>
                                     </td>
                                     <td>
-                                        <div class="font-bold">{order?.data.productId}</div>
+                                        <div class="font-bold">{order?.productId}</div>
 
                                     </td>
                                     <th>
