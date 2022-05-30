@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import Loading from '../../Loading';
 
 const ManageUsers = () => {
+
+    const [deleteUsers, setDeleteUsers] = useState();
+
     const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://fast-reef-28359.herokuapp.com/user', {
         method: 'GET',
         headers: {
@@ -36,6 +39,26 @@ const ManageUsers = () => {
                 }
             })
     };
+
+
+
+    const removeUsers = (id) => {
+        const proceed = window.confirm("Delete User?")
+        if (proceed) {
+            fetch(`https://fast-reef-28359.herokuapp.com/user/${id}`, {
+                method: 'DELETE',
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result) {
+                        const newRemaining = deleteUsers.filter(user => user._id !== id);
+                        setDeleteUsers(newRemaining);
+                        toast.warning('User removed')
+                    }
+                })
+        }
+    }
+
 
     return (
         <div className='lg:max-w-4xl mx-auto my-10'>
@@ -76,7 +99,7 @@ const ManageUsers = () => {
 
                                     </td>
                                     <th>
-                                        <button class="btn btn-ghost bg-black text-warning btn-xs">Remove User</button>
+                                        <button onClick={() => removeUsers(_id)} class="btn btn-ghost bg-black text-warning btn-xs">Remove User</button>
                                         <br />
                                         {
                                             role !== "admin" &&
