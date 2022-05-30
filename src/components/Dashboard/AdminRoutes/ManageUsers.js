@@ -54,8 +54,8 @@ const ManageUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users?.map(({ email, _id, role }, index) =>
-                                <tr key={index}>
+                            users?.map(({ email, _id, role }) =>
+                                <tr>
                                     <td>
                                         <div class="btn font-bold bg-black text-warning rounded-xl">
                                             {
