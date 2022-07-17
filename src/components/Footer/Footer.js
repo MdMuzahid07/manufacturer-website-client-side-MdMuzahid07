@@ -2,21 +2,21 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className=' max-w-7xl mx-auto'>
+        <div className='w-full'>
             <footer class="footer p-10 bg-black text-white">
                 <div>
                     <span class="footer-title">Services</span>
-                    <a  href="#" className="link link-hover font-bold">Branding</a>
-                    <a  href="#" className="link link-hover font-bold">Design</a>
-                    <a  href="#" className="link link-hover font-bold">Marketing</a>
-                    <a  href="#" className="link link-hover font-bold">Advertisement</a>
+                    <a href="#" className="link link-hover font-bold">Branding</a>
+                    <a href="#" className="link link-hover font-bold">Design</a>
+                    <a href="#" className="link link-hover font-bold">Marketing</a>
+                    <a href="#" className="link link-hover font-bold">Advertisement</a>
                 </div>
                 <div>
                     <span class="footer-title">Company</span>
-                    <a  href="#" className="link link-hover font-bold">About us</a>
-                    <a  href="#" className="link link-hover font-bold">Contact</a>
-                    <a  href="#" className="link link-hover font-bold">Jobs</a>
-                    <a  href="#" className="link link-hover font-bold">Press kit</a>
+                    <a href="#" className="link link-hover font-bold">About us</a>
+                    <a href="#" className="link link-hover font-bold">Contact</a>
+                    <a href="#" className="link link-hover font-bold">Jobs</a>
+                    <a href="#" className="link link-hover font-bold">Press kit</a>
                 </div>
                 <div>
                     <span class="footer-title">Social</span>
