@@ -43,7 +43,7 @@ const Navbar = ({ children }) => {
                         </div>
 
                         {/* dropdown profile */}
-                        <div className="dropdown dropdown-end border-2">
+                        <div className="dropdown dropdown-end">
                             <label tabindex="0" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     {
@@ -51,7 +51,7 @@ const Navbar = ({ children }) => {
                                     }
                                 </div>
                             </label>
-                            <ul tabindex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                            <ul tabindex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content border-4 border-warning bg-white rounded-box w-52">
                                 <li>
                                     {
                                         user ? <h1 className='text-black font-bold'>{(user?.displayName) || (user?.user?.displayName)}</h1> : <h2 className='text-black font-bold'>User Name</h2>
