@@ -1,9 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebse.init';
+import { toast } from 'react-toastify';
 
 const MyProfile = () => {
-    const { register, handleSubmit, watch, formState: { errora } } = useForm();
+    const [user] = useAuthState(auth);
+    console.log(user)
+    const { register, handleSubmit, watch, formState: { error } } = useForm();
+    if (error) {
+        toast.error(error.message)
+    }
     const onSubmit = data => {
         console.log(data)
     };
@@ -18,7 +25,7 @@ const MyProfile = () => {
                 <div className="card card-compact md:w-72 h-72 bg-white text-warning border drop-shadow rounded">
                     <div className="avatar">
                         <div className="w-44 mx-auto rounded -mt-7">
-                            <img src="https://placeimg.com/192/192/people" alt="profile_img" />
+                            <img src={user.photoURL} alt="uer_image" />
                         </div>
                     </div>
                     <div className="card-body">
@@ -42,11 +49,11 @@ const MyProfile = () => {
                         <form onSubmit={handleSubmit(onSubmit)}>
 
                             <div className='grid md:grid-cols-2 gap-4'>
-                                <input {...register("name")} type="text" placeholder='first name' className="input input-bordered input-warning w-full rounded my-4" />
-                                <input {...register("name")} type="text" placeholder='last name' className="input input-bordered input-warning w-full rounded my-4" />
+                                <input {...register("firstName")} type="text" placeholder='first name' className="input input-bordered input-warning w-full rounded my-4" />
+                                <input {...register("LastName")} type="text" placeholder={user?.displayName} className="input input-bordered input-warning w-full rounded my-4" />
                             </div>
 
-                            <input {...register("email")} type="email" placeholder='email address' className="input input-bordered input-warning w-full rounded" />
+                            <input {...register("email")} type="email" placeholder={user?.email} className="input input-bordered input-warning w-full rounded" />
 
                             <input {...register("contact")} type="number" placeholder='phone' className="input input-bordered input-warning w-full rounded my-4" />
 

@@ -41,10 +41,9 @@ const Navbar = ({ children }) => {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                             </label>
                         </div>
-
                         {/* dropdown profile */}
                         <div className="dropdown dropdown-end">
-                            <label tabindex="0" className="btn btn-ghost btn-circle avatar">
+                            <label tabindex="0" className="btn btn-ghost btn-circle avatar tooltip tooltip-warning tooltip-bottom" data-tip="My Account">
                                 <div className="w-10 rounded-full">
                                     {
                                         user ? <img src={user.photoURL} alt="" /> : <img src="https://i.ibb.co/8NYjKNh/user-Profile.png" alt="" />
@@ -58,10 +57,10 @@ const Navbar = ({ children }) => {
                                     }
                                 </li>
                                 <li>
-                                    <a className="justify-between text-black">
+                                    <Link to="/dashboard/myprofile" className="justify-between text-black">
                                         Profile
                                         <span className="badge">New</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link className="text-black" to='/dashboard/myprofile'>Dashboard</Link>
