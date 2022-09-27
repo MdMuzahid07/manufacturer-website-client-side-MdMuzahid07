@@ -48,7 +48,7 @@ const Reviews = () => {
         ]
     };
     return (
-        <div className="bg-slate-700">
+        <div className="bg-slate-900">
             <div className="py-20 max-w-5xl mx-auto">
                 <h1 className="text-2xl ml-2 text-warning font-bold mb-5"><span className="text-5xl ml-2 bg-black px-2">Our</span> Customers Says</h1>
                 <Slider {...settings}>

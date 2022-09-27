@@ -18,7 +18,7 @@ const AllProducts = () => {
 
 
     return (
-        <div className='bg-slate-700 py-10'>
+        <div className='bg-slate-900 py-10'>
             <div className='max-w-5xl mx-auto my-20'>
                 <h1 className='text-3xl font-bold text-warning mb-10 ml-5'><span className='text-5xl font-bold bg-black px-2'>Latest</span> Products</h1>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 mx-5">
