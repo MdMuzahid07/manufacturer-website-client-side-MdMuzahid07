@@ -53,7 +53,6 @@ const Footer = () => {
                         <hr className='my-2' />
                         <div className="form-control w-80">
                             <label className="label">
-                                <span className="label-text">Stay connect with us</span>
                                 <Social />
                             </label>
                             <div className="relative">

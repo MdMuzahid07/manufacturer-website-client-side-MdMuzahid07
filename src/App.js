@@ -24,6 +24,7 @@ import ManageUsers from './components/Dashboard/AdminRoutes/ManageUsers';
 import Payment from './components/Dashboard/Payment';
 import ManageProducts from './components/Dashboard/ManageProducts';
 import RequireAdmin from './pages/Authentication/RequireAdmin/RequireAdmin';
+import Toast_Container from './components/ToastContainer/Toast_Container';
 
 
 
@@ -65,7 +66,7 @@ function App() {
         </Routes>
       </Navbar>
       <Footer />
-      <ToastContainer />
+      <Toast_Container />
     </div>
   );
 }
