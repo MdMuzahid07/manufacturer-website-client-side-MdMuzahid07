@@ -3,9 +3,9 @@ import Social from '../Social/Social';
 
 const Footer = () => {
     return (
-        <div className='max-w-7xl mx-auto'>
+        <div className='max-w-7xl mx-auto font-bold text-white'>
             <footer>
-                <section className="grid md:grid-cols-4 bg-slate-100 px-4 md:px-10 py-7">
+                <section className="grid md:grid-cols-4 bg-slate-900 px-4 md:px-10 py-7">
                     <div>
                         <h2 className="text-xl font-bold">We Work WorldWide</h2>
                         <hr className='my-2' />
