@@ -64,7 +64,7 @@ const Navbar = ({ children }) => {
                                     </a>
                                 </li>
                                 <li>
-                                    <Link className="text-black" to='/dashboard'>Dashboard</Link>
+                                    <Link className="text-black" to='/dashboard/myprofile'>Dashboard</Link>
                                 </li>
                                 <li>
                                     <Link className="text-black" to='/login'>Login/SingUp</Link>

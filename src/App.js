@@ -63,8 +63,8 @@ function App() {
           </Route>
           <Route path='/blogs' element={<Blogs />} />
         </Routes>
-        <Footer />
       </Navbar>
+      <Footer />
       <ToastContainer />
     </div>
   );

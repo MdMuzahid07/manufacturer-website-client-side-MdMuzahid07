@@ -1,20 +1,75 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const MyProfile = () => {
+    const { register, handleSubmit, watch, formState: { errora } } = useForm();
+    const onSubmit = data => {
+        console.log(data)
+    };
+
+    console.log(watch("example")); // watch input value by passing the name of it
     return (
-        <div className='lg:max-w-4xl mx-auto my-10'>
-            <h2 className='text-2xl font-bold text-warning my-7'><span className='text-3xl bg-black px-2'>My</span> Profile</h2>
+        <div className='mx-auto my-7 px-5'>
+            <h2 className='text-3xl font-bold text-warning'>My Profile</h2>
+            <hr className='mt-5 mb-7' />
 
-
-            <div className="avatar online">
-                <div class="w-24 rounded-full">
-                    <img src="https://api.lorem.space/image/face?hash=28212" alt="" />
+            <div className='md:flex gap-5'>
+                <div className="card card-compact md:w-72 h-72 bg-white text-warning border drop-shadow rounded">
+                    <div className="avatar">
+                        <div className="w-44 mx-auto rounded -mt-7">
+                            <img src="https://placeimg.com/192/192/people" alt="profile_img" />
+                        </div>
+                    </div>
+                    <div className="card-body">
+                        <h2 className="card-title">name</h2>
+                        <p>title</p>
+                        <div className="card-actions bg-black rounded p-2">
+                            <input type="file" className=" w-full text-xs text-white
+     
+                                file:rounded-full file:border-0
+                                file:text-xs file:font-xs
+                                file:bg-warning file:text-white
+                                "/>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div className=''>
-                <button className='btn btn-xs btn-warning text-white'>Update image</button>
-                <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ea, quod neque assumenda quae distinctio vero deserunt et voluptatem, amet cupiditate, exercitationem voluptatibus quasi ipsum soluta totam tempora enim quibusdam aspernatur doloribus? Reiciendis, at culpa earum sed natus molestiae ea officia soluta nostrum ullam et enim commodi corrupti dolorum eius laborum iure debitis expedita aliquam quod itaque. Reprehenderit eum ratione commodi? Velit est enim, ducimus error ipsa officia delectus natus. Nostrum pariatur, error dolores, consequuntur voluptatum repudiandae vitae quibusdam, quam magnam enim quaerat deleniti laudantium accusamus corporis facilis doloremque architecto temporibus adipisci saepe voluptatem. Sit, facilis? Ratione, alias eveniet impedit iste corporis nisi obcaecati quidem! Distinctio quas unde nostrum, reiciendis labore earum nulla enim tempore. Sequi accusamus repellat maxime dolore adipisci quibusdam explicabo aspernatur mollitia quod expedita repellendus facere dolorem iure obcaecati exercitationem, consequatur dignissimos ipsam amet incidunt ea iste praesentium ratione quidem at. Minus odit alias, nesciunt error labore corporis placeat nam impedit, maiores delectus itaque quidem esse fugiat eaque. Eaque saepe vitae vero, in at, qui sapiente voluptatem magnam quibusdam molestiae dicta inventore culpa voluptatibus incidunt dignissimos commodi repudiandae aliquid? Quisquam nesciunt necessitatibus quia optio placeat quam illo, nihil tenetur exercitationem maiores odit quod molestias molestiae recusandae nam iure porro cumque. Odio laboriosam quod error ipsum, animi tenetur aliquam sequi ducimus, unde dicta ratione. Voluptatem praesentium quis reprehenderit laborum nihil facere perspiciatis cum asperiores eveniet ratione error quae esse vel placeat, mollitia voluptas eius enim harum unde consequatur nostrum quos. Atque minima dolor, illo porro amet voluptatibus quo maiores odio animi natus mollitia excepturi. Architecto alias consequatur dicta voluptatem sint natus animi. Pariatur ipsam nulla quod obcaecati veritatis neque optio! Vitae illum nesciunt ipsam quidem, temporibus magnam maxime eveniet accusantium fugiat, numquam possimus eius est sed a, nam placeat magni animi neque! Qui veritatis aperiam sapiente, minima velit obcaecati numquam est vero odio, dolore veniam? Doloribus, ad ipsam. Autem enim debitis fugiat inventore modi doloribus, rerum rem, iste labore dolorum ducimus earum quis laborum eveniet numquam, amet eaque soluta. Iure nesciunt debitis eveniet dignissimos et nostrum at laborum quia dicta culpa, eum voluptatem laudantium itaque nemo qui facere aliquid inventore velit sint, atque nisi unde tempore odit non! Odit quas, dicta sapiente earum sint magnam molestiae doloribus adipisci porro voluptatum quidem dignissimos blanditiis illum nesciunt sed eaque ad et odio in aut recusandae ratione possimus. Eligendi, natus. Fuga a harum est modi ex, tenetur ut cupiditate at suscipit facere fugit in dicta quo similique animi dignissimos quis vero, laborum vitae ipsum et autem blanditiis. Earum cupiditate odio saepe adipisci explicabo tenetur quas, cumque, numquam nesciunt ex repellat iusto quaerat rem soluta nulla modi fuga tempore dicta nisi id laudantium qui molestias eius? Rerum quia vero itaque. Ullam atque facilis provident, aliquid nihil doloremque animi blanditiis, incidunt similique itaque commodi. Quis iste mollitia rem et quidem dolorum quisquam deserunt laudantium totam dolores. Ex, maiores laboriosam perspiciatis, voluptates accusantium reprehenderit ducimus laborum velit, tempora voluptate voluptatum sapiente sunt distinctio quis corporis modi a sequi sed quas temporibus ullam minima mollitia?</h2>
+                <div className="card card-compact w-full border drop-shadow rounded my-7 md:my-0">
+                    <div className="card-body">
+
+                        <h2 className='text-3xl font-bold mt-7'>Update your profile</h2>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+
+                            <div className='grid md:grid-cols-2 gap-4'>
+                                <input {...register("name")} type="text" placeholder='first name' className="input input-bordered input-warning w-full rounded my-4" />
+                                <input {...register("name")} type="text" placeholder='last name' className="input input-bordered input-warning w-full rounded my-4" />
+                            </div>
+
+                            <input {...register("email")} type="email" placeholder='email address' className="input input-bordered input-warning w-full rounded" />
+
+                            <input {...register("contact")} type="number" placeholder='phone' className="input input-bordered input-warning w-full rounded my-4" />
+
+                            <input {...register("address")} type="text" placeholder='address' className="input input-bordered input-warning w-full rounded" />
+
+                            <div className='grid md:grid-cols-2 gap-4 my-4'>
+                                <input {...register("city")} type="text" placeholder='city' className="input input-bordered input-warning w-full rounded" />
+                                <input {...register("state")} type="text" placeholder='state' className="input input-bordered input-warning w-full rounded" />
+                            </div>
+
+                            <div className='grid md:grid-cols-2 gap-4'>
+                                <input {...register("country")} type="text" placeholder='country' className="input input-bordered input-warning w-full rounded" />
+                                <input {...register("zip")} type="number" placeholder='zip code' className="input input-bordered input-warning w-full rounded" />
+                            </div>
+
+                            <input {...register("password")} type="password" placeholder='password' className="input input-bordered input-warning w-full rounded mt-4" />
+
+                            <button className='btn btn-circle btn-outline btn-warning my-7'><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                            </svg></button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     )
