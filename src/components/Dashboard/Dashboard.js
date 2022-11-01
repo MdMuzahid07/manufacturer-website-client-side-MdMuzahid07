@@ -9,7 +9,7 @@ const Dashboard = () => {
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user);
     return (
-        <div class="drawer drawer-mobile">
+        <div class="drawer drawer-mobile" style={{ minHeight: "100vh" }}>
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">
                 <Outlet />
