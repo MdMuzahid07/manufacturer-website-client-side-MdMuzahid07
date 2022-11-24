@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Loading from '../../components/Loading';
 
 const AllProducts = () => {
-    const [products, setProducts] = useState();
-    useEffect(() => {
-        fetch("https://fast-reef-28359.herokuapp.com/product")
-            .then(response => response.json())
-            .then(data => setProducts(data));
-    }, [products]);
-
     const navigate = useNavigate();
+
+    const url = "https://fast-reef-28359.herokuapp.com/product";
+
+    const { isLoading, error, data: products, refetch } = useQuery({
+        queryKey: ['repoData'],
+        queryFn: () =>
+            fetch(url).then(res =>
+                res.json()
+            )
+    })
+
+    if (isLoading) {
+        return <Loading />
+    } else if (!products) {
+        refetch()
+    } else if (error) {
+        toast.error(error.message);
+    }
+
 
     const navigateToPurchase = (id) => {
         navigate(`/purchase/${id}`);

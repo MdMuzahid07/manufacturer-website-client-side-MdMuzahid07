@@ -6,21 +6,24 @@ import { toast } from 'react-toastify';
 import auth from '../firebse.init';
 
 const Purchase = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const { id } = useParams();
     const [user] = useAuthState(auth);
 
-    const [product, setProduct] = useState();
+    const [product, setProduct] = useState({});
     useEffect(() => {
         const url = `https://fast-reef-28359.herokuapp.com/product/${id}`;
         fetch(url)
             .then(response => response.json())
             .then(data => setProduct(data))
-    }, [product]);
+    }, [id]);
 
     const minimumOrder = product?.minimumOrder;
 
+    if (errors) {
+        toast.error(errors.message)
+    };
 
     const onSubmit = data => {
 
@@ -76,11 +79,11 @@ const Purchase = () => {
                     </div>
                     <div>
                         <form className='bg-slate-100 p-5 rounded-xl' onSubmit={handleSubmit(onSubmit)}>
-                            <input {...register("productImg", { required: true })} value={product?.image} placeholder='ProductImage' className='input input-bordered input-warning w-full max-w-xl mb-2' />
-                            <input {...register("productName", { required: true })} value={product?.name} placeholder='ProductName' className='input input-bordered input-warning w-full max-w-xl mb-2' />
-                            <input {...register("productId", { required: true })} value={product?._id} placeholder='ProductId' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productImg", { required: true })} value={product?.image} type="text" placeholder='ProductImage' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productName", { required: true })} value={product?.name} type="text" placeholder='ProductName' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("productId", { required: true })} value={product?._id} type="text" placeholder='ProductId' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("name", { required: true })} value={user.displayName} placeholder='Name' className='input input-bordered input-warning w-full max-w-xl mb-2' />
-                            <input {...register("email", { required: true })} type="email" value={user.email} placeholder='Email' className='input input-bordered input-warning w-full max-w-xl mb-2' />
+                            <input {...register("email", { required: true })} type="email" value={user?.email} placeholder='Email' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("phone", { required: true })} type="number" placeholder='Phone' className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("quantity", { required: true })} type="number" placeholder={minimumOrder} className='input input-bordered input-warning w-full max-w-xl mb-2' />
                             <input {...register("unitPrice", { required: true })} type="number" value={product?.unitPrice} className='input input-bordered input-warning w-full max-w-xl mb-2' />

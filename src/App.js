@@ -10,7 +10,6 @@ import SignUp from './pages/Authentication/SignIn/SingUp';
 import Login from './pages/Authentication/Login/Login';
 import ErrorPage from './pages/ErrorPage';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
 import RequireAuth from './pages/Authentication/RequireAuth/RequireAuth';
 import Purchase from './components/Purchase';
 import Dashboard from './components/Dashboard/Dashboard';
